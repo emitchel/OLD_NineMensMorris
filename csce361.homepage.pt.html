@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="jquery-1.9.1.js"></script>
+    <script>
+
+       
+
+        function playComputer() {
+            document.getElementById("opponent").value = "computer";
+            document.getElementById("compBtn").src = "1pbs.png";
+            document.getElementById("humBtn").src = "2pb.png";
+            document.getElementById("play").disabled = false;
+            document.getElementById("error").innerHTML = "";
+            document.getElementById("p2").value = "Computer";
+        }
+
+
+        function playHuman() {
+            document.getElementById("opponent").value = "human";
+            document.getElementById("compBtn").src = "1pb.png";
+            document.getElementById("humBtn").src = "2pbs.png";
+            document.getElementById("play").disabled = false;
+            document.getElementById("error").innerHTML = "";
+            document.getElementById("p2").value = "Player2";
+        }
+
+        function showOptions() {
+            $.modal("<h1>Options</h1><p><h4>Pieces required for flying mode</h4></p><p><form><input checked type='radio' onclick=changeFlying('3'); name='pc' value='3'>3<br><input type='radio' onclick=changeFlying('4'); name='pc' value='4'>4</form></p>");
+        }
+
+        function showRules() {
+            $.modal("<p><h1>Rules for Gameplay</h1></p><p><h2>Object of the game</h2></p><p>The object of the game is to reduce the opponent's pieces to two.</p><p><h3>Phase one: Placing Pieces</h3></p><p>Each player will take turns placing their own pieces on the game board. If three pieces are lined up in three adjacent spots, that player can remove an opponents piece. This piece cannot already be a part of a mill, but if there are no such pieces, allow removal. </p><p><h3>Phase two: Moving Pieces</h3></p><p>After all the pieces have been placed, the players can now move to adjacent places, denoted by the lines.</p><p><h3>Phase three: Flying</h3></p><p>Once a player has reached 3 or 4 pieces (choose in the options menu), they will then be able to move their pieces to any non adjacent location.</p>")
+        }
+
+        function changeFlying(x){
+            document.getElementById("flying").value = x;
+
+        }
+
+
+
+</script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+    <link rel="stylesheet" type="text/css" href="simplemodal-demo-basic-1.4.4/basic/css/basic.css">
+    <link rel="stylesheet" type="text/css" href="simplemodal-demo-basic-1.4.4/basic/css/basic_ie.css">
+    <link rel="stylesheet" type="text/css" href="simplemodal-demo-basic-1.4.4/basic/css/demo.css">
+
+    <script type="text/javascript" src="simplemodal-demo-basic-1.4.4/basic/js/basic.js"></script>
+    <script type="text/javascript" src="simplemodal-demo-basic-1.4.4/basic/js/jquery.js"></script>
+    <script type="text/javascript" src="simplemodal-demo-basic-1.4.4/basic/js/jquery.simplemodal.js"></script>
+    <style type='text/css'>
+        #simplemodal-container a.modalCloseImg {
+            background: url(x.png) no-repeat; /* adjust url as required */
+            width: 25px;
+            height: 29px;
+            display: inline;
+            z-index: 3200;
+            position: absolute;
+            top: -15px;
+            right: -18px;
+            cursor: pointer;
+        }
+</style>
+</head>
+<body style="background-color: gray;">
+    <div align="center">
+
+        <form method="GET" action="csce361.play.html">
+            <table cellspacing="0" cellpadding="0" style="border: 10px solid white; background-color: white;">
+                <tr>
+                    <th align="center" colspan="2">
+                        <h1><font style="color: black; font-size: 60px; font-family: serif bold;">Nine Men's Morris</font></h1>
+                    </th>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input disabled="true" type="submit" id="play" value="" class="play"><br>
+                        <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <br />
+                        <div id="error"></div>
+                        <br />
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center" colspan="2">Enter your names:</th>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="text" name="p1" id="p1" value="Player1">
+                        <input type="text" name="p2" id="p2" value="Player2"></td>
+                </tr>
+
+                <tr>
+                    <td align="center" colspan="2">
+                        <br>
+                        <br>
+                        <img id="compBtn" onclick="playComputer()" class="b" src="1pb.png">
+                        <img id="humBtn" onclick="playHuman()" class="b" src="2pb.png"><br>
+
+                        <!--Add functionality-->
+                        <img class="b" src="ob.png" onclick="showOptions();">
+                        <img class="b" src="rb.png" onclick="showRules();"><br>
+                    </td>
+
+                </tr>
+
+                <!-- <tr><td><hr></td><td><hr></td></tr> -->
+                <tr>
+                    <td align="center">
+                        <div id="feedback"></div>
+                    </td>
+                </tr>
+            </table>
+            <input type="hidden" id="opponent" name="opponent" value="" />
+            <input type="hidden" id="flying" name="flying" value="3" />
+        </form>
+        <!--<a href="#" onclick="jQuery('#dialog').dialog('open'); return false">Click here to see the popup</a>-->
+    </div>
+
+</body>
+</html>
